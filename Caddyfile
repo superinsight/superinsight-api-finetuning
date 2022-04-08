@@ -1,0 +1,5 @@
+finetuning.api.superinsight.github.com {
+    reverse_proxy superinsight-api-finetuning:1337 {
+        header_down Strict-Transport-Security max-age=31536000;
+    }
+}
