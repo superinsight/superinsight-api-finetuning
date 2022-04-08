@@ -32,4 +32,4 @@ Note: You will need Docker installed locally if you want to test your Docker con
 Note 2: Make sure you add .env to your .gitignore before pushing any changes to your repository. You will also want to generate new public & private keys
 
 ## Credit
-Thanks to https://github.com/TomDoesTech for providing example on creating a project with typescript and swagger 
+Thanks to https://github.com/TomDoesTech for providing scaffold for typescript and swagger
