@@ -3,15 +3,17 @@ import { createStoryHandler, getStoryHandler } from "./controller/story.controll
 import {
   createFinetuneHandler,
   getFinetuneHandler,
+  listFinetuneHandler,
   updateFinetuneHandler,
   deleteFinetuneHandler,
 } from "./controller/finetune.controller";
 import validateResource from "./middleware/validateResource";
-import { createStorySchema, getStorySchema } from "./schema/story.schema";
+import { createStorySchema, getStorySchema} from "./schema/story.schema";
 import {
   createFinetuneSchema,
   deleteFinetuneSchema,
   getFinetuneSchema,
+  listFinetuneSchema,
   updateFinetuneSchema,
 } from "./schema/finetune.schema";
 
@@ -131,7 +133,7 @@ function routes(app: Express) {
    *     parameters:
    *      - name: finetuneId
    *        in: path
-   *        description: The id of the finetune
+   *        description: status of finetunes 
    *        required: true
    *     responses:
    *       200:
@@ -153,6 +155,35 @@ function routes(app: Express) {
     "/api/finetunes/:finetuneId",
     [validateResource(deleteFinetuneSchema)],
     deleteFinetuneHandler
+  );
+
+
+  /**
+   * @openapi
+   * '/api/finetunes':
+   *  get:
+   *     tags:
+   *     - Finetunes
+   *     summary: List finetunes by state
+   *     parameters:
+   *      - name: state 
+   *        in: query
+   *        description: The id of the finetune
+   *        required: true
+   *     responses:
+   *       200:
+   *         description: Success
+   *         content:
+   *          application/json:
+   *           schema:
+   *              $ref: '#/components/schemas/ListFinetuneResponse'
+   *       404:
+   *         description: Finetune not found
+   */
+   app.get(
+    "/api/finetunes/",
+    validateResource(listFinetuneSchema),
+    listFinetuneHandler
   );
 
 }

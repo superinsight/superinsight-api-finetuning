@@ -30,15 +30,27 @@ import { object, number, string, array, TypeOf } from "zod";
  *    ReadFinetuneResponse:
  *      type: object
  *      required:
- *       - baseModelId
- *       - storyIds
+ *        - baseModelId
+ *        - storyIds
  *      properties:
  *        baseModelId:
+ *          type: string
+ *        finetuneId:
+ *          type: string
+ *        state:
  *          type: string
  *        storyIds:
  *          type: array
  *          items: 
  *            type: string
+ *        createdAt:
+ *          type: string
+ *        updatedAt:
+ *          type: string
+ *    ListFinetuneResponse:
+ *      type: array
+ *      items:
+ *        $ref: '#/components/schemas/ReadFinetuneResponse'
  */
 
 
@@ -74,7 +86,10 @@ export const getFinetuneSchema = object({
   ...params,
 });
 
+export const listFinetuneSchema = object({});
+
 export type CreateFinetuneInput = TypeOf<typeof createFinetuneSchema>;
 export type UpdateFinetuneInput = TypeOf<typeof updateFinetuneSchema>;
 export type ReadFinetuneInput = TypeOf<typeof getFinetuneSchema>;
+export type ListFinetuneInput = TypeOf<typeof listFinetuneSchema>;
 export type DeleteFinetuneInput = TypeOf<typeof deleteFinetuneSchema>;

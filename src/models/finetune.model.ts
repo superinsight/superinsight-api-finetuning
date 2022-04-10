@@ -5,13 +5,14 @@ const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 10);
 
 export interface FinetuneInput {
   baseModelId: string;
-  status: string;
+  state: string;
   storyIds: string[];
 }
 
 export interface FinetuneDocument extends FinetuneInput, mongoose.Document {
   createdAt: Date;
   updatedAt: Date;
+  state: string;
 }
 
 const finetuneSchema = new mongoose.Schema(
@@ -23,7 +24,7 @@ const finetuneSchema = new mongoose.Schema(
       default: () => `${nanoid()}`,
     },
     baseModelId: { type: String, required: true },
-    status: { type: String, required: true },
+    state: { type: String, required: true },
     storyIds: { type: [String], required: true },
   },
   {

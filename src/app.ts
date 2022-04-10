@@ -10,11 +10,8 @@ import { restResponseTimeHistogram, startMetricsServer } from "./utils/metrics";
 import swaggerDocs from "./utils/swagger";
 
 const port = config.get<number>("port");
-
 const app = express();
-
-app.use(express.json());
-
+app.use(express.json({ limit: '16mb' }));
 app.use(
   responseTime((req: Request, res: Response, time: number) => {
     if (req?.route?.path) {

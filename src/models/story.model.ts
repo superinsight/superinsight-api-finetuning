@@ -2,13 +2,14 @@ import mongoose from "mongoose";
 import { customAlphabet } from "nanoid";
 const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 10);
 export interface StoryInput {
-  name: string;
+  name?: string;
   text: string;
 }
 
 export interface StoryDocument extends StoryInput, mongoose.Document {
   createdAt: Date;
   updatedAt: Date;
+  storyId: string;
 }
 
 const storySchema = new mongoose.Schema(
