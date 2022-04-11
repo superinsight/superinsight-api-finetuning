@@ -20,14 +20,17 @@
 * Zod validation
 
 
-# Get Started 
+# Get Started
 
-## What will we use
+## Install Dependencies
 ```
 yarn
-yarn run dev
 ```
 
+## Run in debug mode
+```
+yarn dev
+```
 
 # Deployment
 
