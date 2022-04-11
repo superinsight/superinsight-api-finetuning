@@ -22,12 +22,10 @@
 
 # Get Started
 
-## Install Dependencies
+## Install Dependencies and run in debug mode
 ```
 yarn
 ```
-
-## Run in debug mode
 ```
 yarn dev
 ```
