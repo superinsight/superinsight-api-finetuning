@@ -37,7 +37,7 @@ function routes(app: Express) {
    *  post:
    *     tags:
    *     - Story
-   *     summary: Create a story
+   *     summary: Create a story that will be use for finetuning, maximum size of a story is 16MB, create multiple stories for finetuning larger amount of data
    *     requestBody:
    *      required: true
    *      content:
@@ -64,7 +64,7 @@ function routes(app: Express) {
    *  get:
    *     tags:
    *     - Story
-   *     summary: Get a single story by the storyId
+   *     summary: Get a single story by the storyId, a story is use for finetuning a model 
    *     parameters:
    *      - name: storyId
    *        in: path
@@ -92,7 +92,7 @@ function routes(app: Express) {
    *  post:
    *     tags:
    *     - Finetunes
-   *     summary: Create a finetune
+   *     summary: Create a finetune with stories by including all the story ids
    *     requestBody:
    *      required: true
    *      content:
@@ -116,7 +116,37 @@ function routes(app: Express) {
     [validateResource(createFinetuneSchema)],
     createFinetuneHandler
   );
- 
+
+  /**
+   * @openapi
+   * '/api/finetunes/{finetuneId}':
+   *  put:
+   *     tags:
+   *     - Finetunes
+   *     summary: Update the state of the finetune, state includes created, cancelled, training, failed, completed, uploaded
+   *     parameters:
+   *      - name: finetuneId
+   *        in: path
+   *        description: The id of the finetune that needs to be updated
+   *        required: true
+   *     requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *           schema:
+   *              $ref: '#/components/schemas/UpdateFinetuneInput'
+   *     responses:
+   *      200:
+   *        description: Success
+   *        content:
+   *          application/json:
+   *            schema:
+   *              $ref: '#/components/schemas/UpdateFinetuneResponse'
+   *      409:
+   *        description: Conflict
+   *      400:
+   *        description: Bad request
+   */
   app.put(
     "/api/finetunes/:finetuneId",
     [validateResource(updateFinetuneSchema)],
@@ -129,7 +159,7 @@ function routes(app: Express) {
    *  get:
    *     tags:
    *     - Finetunes
-   *     summary: Get a single finetune by the finetuneId
+   *     summary: Get information about the finetune by passing the finetuneId
    *     parameters:
    *      - name: finetuneId
    *        in: path
@@ -164,7 +194,7 @@ function routes(app: Express) {
    *  get:
    *     tags:
    *     - Finetunes
-   *     summary: List finetunes by state
+   *     summary: List finetunes by state, useful for viewing all finetunes
    *     parameters:
    *      - name: state 
    *        in: query

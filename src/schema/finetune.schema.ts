@@ -15,7 +15,7 @@ import { object, number, string, array, TypeOf } from "zod";
  *          default: 'gpt-neo-125m'
  *        storyIds:
  *          type: array
- *          items: 
+ *          items:
  *            type: string
  *          default: ['123','456'] 
  *    CreateFinetuneResponse:
@@ -32,6 +32,7 @@ import { object, number, string, array, TypeOf } from "zod";
  *      required:
  *        - baseModelId
  *        - storyIds
+ *        - state
  *      properties:
  *        baseModelId:
  *          type: string
@@ -51,6 +52,35 @@ import { object, number, string, array, TypeOf } from "zod";
  *      type: array
  *      items:
  *        $ref: '#/components/schemas/ReadFinetuneResponse'
+ *    UpdateFinetuneInput:
+ *      type: object
+ *      required:
+ *        - state
+ *      properties:
+ *        state:
+ *          type: string
+ *          default: 'cancelled'
+ *    UpdateFinetuneResponse:
+ *      type: object
+ *      required:
+ *        - baseModelId
+ *        - storyIds
+ *        - state
+ *      properties:
+ *        baseModelId:
+ *          type: string
+ *        finetuneId:
+ *          type: string
+ *        state:
+ *          type: string
+ *        storyIds:
+ *          type: array
+ *          items:
+ *            type: string
+ *        createdAt:
+ *          type: string
+ *        updatedAt:
+ *          type: string
  */
 
 

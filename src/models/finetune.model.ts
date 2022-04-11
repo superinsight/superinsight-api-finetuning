@@ -10,6 +10,7 @@ export interface FinetuneInput {
 }
 
 export interface FinetuneDocument extends FinetuneInput, mongoose.Document {
+  finetuneId: string;
   createdAt: Date;
   updatedAt: Date;
   state: string;

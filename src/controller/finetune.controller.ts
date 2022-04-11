@@ -22,10 +22,8 @@ export async function createFinetuneHandler(
   const storyIds = body.storyIds;
   const baseModelId = body.baseModelId;
   const state = 'created'
-
   const finetune = await createFinetune({ baseModelId, storyIds, state });
-
-  return res.send(finetune);
+  return res.send({ baseModelId: finetune.baseModelId, state: finetune.state, storyIds: finetune.storyIds, finetuneId: finetune.finetuneId, createdAt: finetune.createdAt, updatedAt: finetune.updatedAt });
 }
 
 export async function updateFinetuneHandler(
@@ -33,8 +31,6 @@ export async function updateFinetuneHandler(
   res: Response
 ) {
   const finetuneId = req.params.finetuneId;
-  const storyIds = req.body.storyIds;
-  const baseModelId = req.body.baseModelId;
   const state = req.body.state;
 
   const finetune = await findFinetune({ finetuneId });
@@ -43,7 +39,7 @@ export async function updateFinetuneHandler(
     return res.sendStatus(404);
   }
 
-  const updatedFinetune = await findAndUpdateFinetune({ finetuneId }, { baseModelId, storyIds, state }, {
+  const updatedFinetune = await findAndUpdateFinetune({ finetuneId }, { state }, {
     new: true,
   });
 
