@@ -20,16 +20,21 @@
 * Zod validation
 
 
+# Get Started 
+
+## What will we use
+```
+yarn
+yarn run dev
+```
+
+
 # Deployment
 
 ## What will we use
 * Docker (image)
 * docker-compose (container)
 * Caddy - Web server
-* DigitalOcean
 
 Note: You will need Docker installed locally if you want to test your Docker configutation
 Note 2: Make sure you add .env to your .gitignore before pushing any changes to your repository. You will also want to generate new public & private keys
-
-## Credit
-Thanks to https://github.com/TomDoesTech for providing scaffold for typescript and swagger

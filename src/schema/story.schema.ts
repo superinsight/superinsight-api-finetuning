@@ -1,4 +1,4 @@
-import { object, string, TypeOf } from "zod";
+import { any, nullable, object, string, TypeOf } from "zod";
 
 /**
  * @openapi
@@ -11,15 +11,20 @@ import { object, string, TypeOf } from "zod";
  *       - name
  *       - text
  *      properties:
+ *        text:
+ *          type: string
  *        name:
  *          type: string
- *        text:
+ *        storyId:
+ *          type: string
+ *        createdAt:
+ *          type: string
+ *        updatedAt:
  *          type: string
  *    CreateStoryInput:
  *      type: object
  *      required:
  *        - text
- *        - name
  *      properties:
  *        name:
  *          type: string
@@ -34,7 +39,7 @@ import { object, string, TypeOf } from "zod";
  *          type: string
  *        name:
  *          type: string
- *        _id:
+ *        storyId:
  *          type: string
  *        createdAt:
  *          type: string
@@ -44,9 +49,7 @@ import { object, string, TypeOf } from "zod";
 
 export const createStorySchema = object({
   body: object({
-    name: string({
-      required_error: "Name is required",
-    }),
+    name: any(),
     text: string({
       required_error: "Text is required",
     }),

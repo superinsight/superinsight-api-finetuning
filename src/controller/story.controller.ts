@@ -8,8 +8,10 @@ export async function createStoryHandler(
   res: Response
 ) {
   try {
+    const megaByte= (new TextEncoder().encode(req.body.text)).length / (1024 * 1024);
+    if (megaByte > 16) return res.status(413).send(`payload must be less than ${megaByte}MB`);
     const story = await createStory(req.body);
-    return res.send(story);
+    return res.send({ storyId: story.storyId, name: story.name, text: story.text });
   } catch (e: any) {
     logger.error(e);
     return res.status(409).send(e.message);

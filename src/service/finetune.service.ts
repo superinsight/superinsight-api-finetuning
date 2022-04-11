@@ -4,7 +4,7 @@ import FinetuneModel, {
   FinetuneInput,
 } from "../models/finetune.model";
 import { databaseResponseTimeHistogram } from "../utils/metrics";
-
+const returnProperties = 'baseModelId finetuneId state storyIds createdAt updatedAt -_id';
 export async function createFinetune(input: FinetuneInput) {
   const metricsLabels = {
     operation: "createFinetune",
@@ -31,7 +31,7 @@ export async function findFinetune(
 
   const timer = databaseResponseTimeHistogram.startTimer();
   try {
-    const result = await FinetuneModel.findOne(query, {}, options);
+    const result = await FinetuneModel.findOne(query, {}, options).select(returnProperties);
     timer({ ...metricsLabels, success: "true" });
     return result;
   } catch (e) {
@@ -51,4 +51,24 @@ export async function findAndUpdateFinetune(
 
 export async function deleteFinetune(query: FilterQuery<FinetuneDocument>) {
   return FinetuneModel.deleteOne(query);
+}
+
+export async function listFinetune(
+  query: FilterQuery<FinetuneDocument>,
+  options: QueryOptions = { lean: true }
+) {
+  const metricsLabels = {
+    operation: "listFinetune",
+  };
+
+  const timer = databaseResponseTimeHistogram.startTimer();
+  try {
+    const result = await FinetuneModel.find(query, {}, options).select(returnProperties);
+    timer({ ...metricsLabels, success: "true" });
+    return result;
+  } catch (e) {
+    timer({ ...metricsLabels, success: "false" });
+
+    throw e;
+  }
 }

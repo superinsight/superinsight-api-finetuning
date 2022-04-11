@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {
   CreateFinetuneInput,
   ReadFinetuneInput,
+  ListFinetuneInput,
   UpdateFinetuneInput,
 } from "../schema/finetune.schema";
 import {
@@ -9,6 +10,7 @@ import {
   deleteFinetune,
   findAndUpdateFinetune,
   findFinetune,
+  listFinetune,
 } from "../service/finetune.service";
 
 export async function createFinetuneHandler(
@@ -19,11 +21,9 @@ export async function createFinetuneHandler(
   const body = req.body;
   const storyIds = body.storyIds;
   const baseModelId = body.baseModelId;
-  const status = 'new'
-
-  const finetune = await createFinetune({ baseModelId, storyIds, status });
-
-  return res.send(finetune);
+  const state = 'created'
+  const finetune = await createFinetune({ baseModelId, storyIds, state });
+  return res.send({ baseModelId: finetune.baseModelId, state: finetune.state, storyIds: finetune.storyIds, finetuneId: finetune.finetuneId, createdAt: finetune.createdAt, updatedAt: finetune.updatedAt });
 }
 
 export async function updateFinetuneHandler(
@@ -31,9 +31,7 @@ export async function updateFinetuneHandler(
   res: Response
 ) {
   const finetuneId = req.params.finetuneId;
-  const storyIds = req.body.storyIds;
-  const baseModelId = req.body.baseModelId;
-  const status = req.body.status;
+  const state = req.body.state;
 
   const finetune = await findFinetune({ finetuneId });
 
@@ -41,7 +39,7 @@ export async function updateFinetuneHandler(
     return res.sendStatus(404);
   }
 
-  const updatedFinetune = await findAndUpdateFinetune({ finetuneId }, { baseModelId, storyIds, status }, {
+  const updatedFinetune = await findAndUpdateFinetune({ finetuneId }, { state }, {
     new: true,
   });
 
@@ -49,7 +47,7 @@ export async function updateFinetuneHandler(
 }
 
 export async function getFinetuneHandler(
-  req: Request<ReadFinetuneInput["params"]>,
+  req: Request,
   res: Response
 ) {
   const finetuneId = req.params.finetuneId;
@@ -60,6 +58,20 @@ export async function getFinetuneHandler(
   }
 
   return res.send(finetune);
+}
+
+
+export async function listFinetuneHandler(
+  req: Request,
+  res: Response
+) {
+  const state = req.query.state?.toString();
+  const finetunes = await listFinetune({ state });
+  if (!finetunes) {
+    return res.sendStatus(404);
+  }
+
+  return res.send(finetunes);
 }
 
 export async function deleteFinetuneHandler(
