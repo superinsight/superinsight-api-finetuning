@@ -20,14 +20,19 @@
 * Zod validation
 
 
-# Get Started 
+# Get Started
 
-## What will we use
+## Setup Mongo
+```
+docker run -d -p 27017:27017 --name superinsight-mongo mongo:latest
+```
+## Install Dependencies and run in debug mode
 ```
 yarn
-yarn run dev
 ```
-
+```
+yarn dev
+```
 
 # Deployment
 

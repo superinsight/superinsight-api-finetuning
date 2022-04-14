@@ -10,6 +10,7 @@ import { any, nullable, object, string, TypeOf } from "zod";
  *       - storyId
  *       - name
  *       - text
+ *       - tags
  *      properties:
  *        text:
  *          type: string
@@ -17,6 +18,10 @@ import { any, nullable, object, string, TypeOf } from "zod";
  *          type: string
  *        storyId:
  *          type: string
+ *        tags:
+ *          type: array
+ *          items:
+ *            type: string
  *        createdAt:
  *          type: string
  *        updatedAt:
@@ -32,6 +37,11 @@ import { any, nullable, object, string, TypeOf } from "zod";
  *        text:
  *          type: string
  *          default: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum 
+ *        tags:
+ *          type: array
+ *          items:
+ *            type: string
+ *          default: ['medicine','health']
  *    CreateStoryResponse:
  *      type: object
  *      properties:

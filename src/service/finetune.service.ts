@@ -4,7 +4,7 @@ import FinetuneModel, {
   FinetuneInput,
 } from "../models/finetune.model";
 import { databaseResponseTimeHistogram } from "../utils/metrics";
-const returnProperties = 'baseModelId finetuneId state storyIds createdAt updatedAt -_id';
+const returnProperties = 'baseModelId finetuneId state storyIds storyTags createdAt updatedAt -_id';
 export async function createFinetune(input: FinetuneInput) {
   const metricsLabels = {
     operation: "createFinetune",

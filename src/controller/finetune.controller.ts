@@ -20,10 +20,11 @@ export async function createFinetuneHandler(
 
   const body = req.body;
   const storyIds = body.storyIds;
+  const storyTags = body.storyTags;
   const baseModelId = body.baseModelId;
   const state = 'created'
-  const finetune = await createFinetune({ baseModelId, storyIds, state });
-  return res.send({ baseModelId: finetune.baseModelId, state: finetune.state, storyIds: finetune.storyIds, finetuneId: finetune.finetuneId, createdAt: finetune.createdAt, updatedAt: finetune.updatedAt });
+  const finetune = await createFinetune({ baseModelId, storyIds, storyTags, state });
+  return res.send({ baseModelId: finetune.baseModelId, state: finetune.state, storyIds: finetune.storyIds, storyTags: finetune.storyTags, finetuneId: finetune.finetuneId, createdAt: finetune.createdAt, updatedAt: finetune.updatedAt });
 }
 
 export async function updateFinetuneHandler(

@@ -1,7 +1,7 @@
 import { FilterQuery, QueryOptions } from "mongoose";
 import StoryModel, { StoryDocument, StoryInput } from "../models/story.model";
 import { databaseResponseTimeHistogram } from "../utils/metrics";
-const returnProperties = 'name text storyId createdAt updatedAt -_id';
+const returnProperties = 'name text storyId tags createdAt updatedAt -_id';
 export async function createStory(input: StoryInput) {
   try {
     input.name = input.name || input.text.slice(0, 10).concat('...');

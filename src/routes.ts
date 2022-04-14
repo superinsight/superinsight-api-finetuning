@@ -92,7 +92,7 @@ function routes(app: Express) {
    *  post:
    *     tags:
    *     - Finetunes
-   *     summary: Create a finetune with stories by including all the story ids
+   *     summary: Create a finetune with stories by including all the story ids and story tags
    *     requestBody:
    *      required: true
    *      content:
