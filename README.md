@@ -22,6 +22,10 @@
 
 # Get Started
 
+## Setup Mongo
+```
+docker run -d -p 27017:27017 --name superinsight-mongo mongo:latest
+```
 ## Install Dependencies and run in debug mode
 ```
 yarn

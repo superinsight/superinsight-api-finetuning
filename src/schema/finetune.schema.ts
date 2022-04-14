@@ -18,6 +18,11 @@ import { object, number, string, array, TypeOf } from "zod";
  *          items:
  *            type: string
  *          default: ['123','456'] 
+ *        storyTags:
+ *          type: array
+ *          items:
+ *            type: string
+ *          default: ['medicine','health']
  *    CreateFinetuneResponse:
  *      type: object
  *      properties:
@@ -32,6 +37,7 @@ import { object, number, string, array, TypeOf } from "zod";
  *      required:
  *        - baseModelId
  *        - storyIds
+ *        - storyTags
  *        - state
  *      properties:
  *        baseModelId:
@@ -42,7 +48,11 @@ import { object, number, string, array, TypeOf } from "zod";
  *          type: string
  *        storyIds:
  *          type: array
- *          items: 
+ *          items:
+ *            type: string
+ *        storyTags:
+ *          type: array
+ *          items:
  *            type: string
  *        createdAt:
  *          type: string
@@ -77,6 +87,10 @@ import { object, number, string, array, TypeOf } from "zod";
  *          type: array
  *          items:
  *            type: string
+ *        storyTags:
+ *          type: array
+ *          items:
+ *            type: string
  *        createdAt:
  *          type: string
  *        updatedAt:
@@ -88,6 +102,7 @@ const payload = {
   body: object({
     baseModelId: string({required_error:'baseModelId required'}),
     storyIds: array(string({required_error:'story ids required'})),
+    storyTags: array(string()),
   }),
 };
 

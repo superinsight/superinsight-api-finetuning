@@ -4,6 +4,7 @@ const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 10);
 export interface StoryInput {
   name?: string;
   text: string;
+  tags?: string[];
 }
 
 export interface StoryDocument extends StoryInput, mongoose.Document {
@@ -22,6 +23,7 @@ const storySchema = new mongoose.Schema(
     },
     name: { type: String, required: true },
     text: { type: String, required: true },
+    tags: { type: [String] },
   },
   {
     timestamps: true,
