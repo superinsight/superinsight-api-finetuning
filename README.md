@@ -7,11 +7,12 @@ Stories are text will be use for finetuning. You can create unlimited number of 
 ## Finetunes
 Finetunes are use to finetune and existing GPT models. This API will allow you to setup everything you need to prepare for finetuning the model. You can define your training dataset by using a collection of StoryIDs or StoryTags which will be use for dataset during finetuning. The actual training of the model happens in the superinsight-trainer-gpt repo.
 
-## API Guide
-Visit https://api.finetuning.superinsight.dev/docs for complete api documentation
+## API Demo
+To test out the API, you can test our demo at https://api.finetuning.superinsight.dev/docs
+All the API routes are availalbe for testing, however since it is a demo, the actual training will not proceed. 
  
 
-# Getting Started
+# Development
 
 ## What you will need
 * A running instance of MongoDB
@@ -25,7 +26,7 @@ Visit https://api.finetuning.superinsight.dev/docs for complete api documentatio
 * Express.js & Express.js middleware
 * Zod validation
 
-## Setup Mongo
+## Setup Mongo using docker
 ```
 docker run -d -p 27017:27017 --name superinsight-mongo mongo:latest
 ```
@@ -37,5 +38,5 @@ yarn
 yarn dev
 ```
 
-# Deployment
+## Deployment
 * Use docker to deploy api
