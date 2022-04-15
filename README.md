@@ -25,10 +25,6 @@ To test out the API, you can try out our live demo. All the API routes are avail
 * Express.js & Express.js middleware
 * Zod validation
 
-## Setup Mongo using docker
-```
-docker run -d -p 27017:27017 --name superinsight-mongo mongo:latest
-```
 ## Install Dependencies and run in debug mode
 ```
 yarn
@@ -37,5 +33,19 @@ yarn
 yarn dev
 ```
 
-## Deployment
-* Use docker to deploy api
+# Running with Docker
+This project can be run with docker separately or by using docker compose
+
+## Run Mongo and API together with docker compose
+```
+docker-compose up
+```
+
+## Run Mongo with docker
+```
+docker run -d -p 27017:27017 --name superinsight-db-mongo mongo:latest
+```
+## Run API with docker
+```
+docker run -d -p 8080:8080 --name superinsight-api-finetuning superinsight/superinsight-api-finetuning:latest
+```

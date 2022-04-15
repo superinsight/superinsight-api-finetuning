@@ -1,4 +1,4 @@
 export default {
   port: 8080,
-  dbUri: "mongodb://localhost:27017/superinsight-api-finetuning-local",
+  dbUri: "mongodb://superinsight-db-mongo:27017/superinsight-api-finetuning-local",
 };
