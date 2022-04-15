@@ -163,7 +163,7 @@ function routes(app: Express) {
    *     parameters:
    *      - name: finetuneId
    *        in: path
-   *        description: status of finetunes 
+   *        description: finetune ID
    *        required: true
    *     responses:
    *       200:
