@@ -9,7 +9,7 @@ Finetunes are use to finetune and existing GPT models. This API will allow you t
 
 ## API Demo
 To test out the API, you test it directly using the Swagger. All the API routes are available for testing, however since it is a demo, the actual training will not proceed unless a trainer is setup. See [superinsight-trainer-gpt](https://github.com/superinsight/superinsight-trainer-gpt) for more.
-* [Demo on our server](https://api.finetuning.superinsight.dev/docs)
+* [Demo on our server](https://finetuning.api.superinsight.dev/docs/)
 * [Demo on your machine](http://localhost:8080/docs)
 
 # Development
