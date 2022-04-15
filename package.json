@@ -6,7 +6,9 @@
   "license": "Apache License 2.0",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
-    "build": "tsc"
+    "build": "yarn clean && tsc && yarn copy-files",
+    "clean": "rm -rf ./build",
+    "copy-files": "cp -R ./src/assets/ ./build/src/assets/"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
