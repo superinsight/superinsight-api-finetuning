@@ -1,17 +1,23 @@
-# API for finetuing GPT models
+# SuperInsight FineTuning API
+This is a RESTful API that you can use to setup the config and data to finetune your model
 
+## Stories
+Stories are text will be use for finetuning. You can create unlimited number of stories using this API. Stories can be use as dataset to finetune one or multiple models. For example, let’s say that you will like to finetune a model to support `french`. You can create thousands of stories and with the tag `french`, and when you are ready, you can create a French GPT model by finetuning it with all `french` stories. If you like to finetune a model for French and German, then you can create a finetune model by using the tags `french` and `german` so your finetune model can support both languages.
+
+## Finetunes
+Finetunes are use to finetune and existing GPT models. This API will allow you to setup everything you need to prepare for finetuning the model. You can define your training dataset by using a collection of StoryIDs or StoryTags which will be use for dataset during finetuning. The actual training of the model happens in the superinsight-trainer-gpt repo.
+
+## API Live Demo
+To test out the API, you can try out our live demo. All the API routes are available for testing, however since it is a demo, the actual training will not proceed. 
+* https://api.finetuning.superinsight.dev/docs
+
+# Development
 
 ## What you will need
 * A running instance of MongoDB
 * A package manager such as NPM or Yarn
 * Node.js installed
 
-## Concepts
-* REST API principals
-    * CRUD
-    * HTTP methods
-* JWT & refresh tokens
-* Request validation
 ## Technologies
 * Node.js
 * MongoDB with Mongoose
@@ -19,10 +25,7 @@
 * Express.js & Express.js middleware
 * Zod validation
 
-
-# Get Started
-
-## Setup Mongo
+## Setup Mongo using docker
 ```
 docker run -d -p 27017:27017 --name superinsight-mongo mongo:latest
 ```
@@ -34,12 +37,5 @@ yarn
 yarn dev
 ```
 
-# Deployment
-
-## What will we use
-* Docker (image)
-* docker-compose (container)
-* Caddy - Web server
-
-Note: You will need Docker installed locally if you want to test your Docker configutation
-Note 2: Make sure you add .env to your .gitignore before pushing any changes to your repository. You will also want to generate new public & private keys
+## Deployment
+* Use docker to deploy api
