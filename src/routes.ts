@@ -20,7 +20,7 @@ import {
 function routes(app: Express) {
   /**
    * @openapi
-   * /healthcheck:
+   * /:
    *  get:
    *     tags:
    *     - Healthcheck
@@ -29,7 +29,7 @@ function routes(app: Express) {
    *       200:
    *         description: App is up and running
    */
-  app.get("/healthcheck", (req: Request, res: Response) => res.sendStatus(200));
+  app.get("/", (req: Request, res: Response) => res.sendStatus(200));
 
   /**
    * @openapi
