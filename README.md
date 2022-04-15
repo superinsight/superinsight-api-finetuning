@@ -7,9 +7,10 @@ Stories are text will be use for finetuning. You can create unlimited number of 
 ## Finetunes
 Finetunes are use to finetune and existing GPT models. This API will allow you to setup everything you need to prepare for finetuning the model. You can define your training dataset by using a collection of StoryIDs or StoryTags which will be use for dataset during finetuning. The actual training of the model happens in the superinsight-trainer-gpt repo.
 
-## API Live Demo
-To test out the API, you can try out our live demo. All the API routes are available for testing, however since it is a demo, the actual training will not proceed. 
-* https://api.finetuning.superinsight.dev/docs
+## API Demo
+To test out the API, you test it directly using the Swagger. All the API routes are available for testing, however since it is a demo, the actual training will not proceed unless a trainer is setup. See [superinsight-trainer-gpt](https://github.com/superinsight/superinsight-trainer-gpt) for more.
+* [Demo on our server](https://api.finetuning.superinsight.dev/docs)
+* [Demo on your machine](http://localhost:8080/docs)
 
 # Development
 
@@ -25,10 +26,6 @@ To test out the API, you can try out our live demo. All the API routes are avail
 * Express.js & Express.js middleware
 * Zod validation
 
-## Setup Mongo using docker
-```
-docker run -d -p 27017:27017 --name superinsight-mongo mongo:latest
-```
 ## Install Dependencies and run in debug mode
 ```
 yarn
@@ -37,5 +34,19 @@ yarn
 yarn dev
 ```
 
-## Deployment
-* Use docker to deploy api
+# Running with Docker
+This project can be run with docker separately or by using docker compose
+
+## Run Mongo and API together with docker compose
+```
+docker-compose up
+```
+
+## Run Mongo with docker
+```
+docker run -d -p 27017:27017 --name superinsight-db-mongo mongo:latest
+```
+## Run API with docker
+```
+docker run -d -p 8080:8080 --name superinsight-api-finetuning superinsight/superinsight-api-finetuning:latest
+```

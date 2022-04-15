@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  superinsight-api-finetuning:
+    image: superinsight/superinsight-api-finetuning:latest
+    container_name: superinsight-api-finetuning
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    build:
+        context: ./ 
+    ports:
+      - "8080:8080"
+
+  mongo:
+    image: mongo:latest
+    container_name: superinsight-db-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
