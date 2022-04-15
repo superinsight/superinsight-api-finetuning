@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   superinsight-api-finetuning:
+    image: superinsight/superinsight-api-finetuning:latest
     container_name: superinsight-api-finetuning
     restart: unless-stopped
     environment:

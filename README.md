@@ -7,9 +7,10 @@ Stories are text will be use for finetuning. You can create unlimited number of 
 ## Finetunes
 Finetunes are use to finetune and existing GPT models. This API will allow you to setup everything you need to prepare for finetuning the model. You can define your training dataset by using a collection of StoryIDs or StoryTags which will be use for dataset during finetuning. The actual training of the model happens in the superinsight-trainer-gpt repo.
 
-## API Live Demo
+## API Demo
 To test out the API, you can try out our live demo. All the API routes are available for testing, however since it is a demo, the actual training will not proceed. 
-* https://api.finetuning.superinsight.dev/docs
+* https://api.finetuning.superinsight.dev/docs [Demo on our server]
+* http://localhost:8080/docs [Demo on your machine]
 
 # Development
 
