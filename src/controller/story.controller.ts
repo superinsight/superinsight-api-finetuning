@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CreateStoryInput, ReadStoryInput } from "../schema/story.schema";
-import { createStory, findStory } from "../service/story.service";
+import { createStory, findStory, listStory } from "../service/story.service";
 import logger from "../utils/logger";
 
 export async function createStoryHandler(
@@ -30,4 +30,20 @@ export async function getStoryHandler(
   }
 
   return res.send(story);
+}
+
+
+export async function listStoryHandler(
+  req: Request,
+  res: Response
+) {
+  const tags = req.query.tags?.toString().split(',');
+  const skip = parseInt(req.query.skip?.toString() || '0');
+  const limit = parseInt(req.query.limit?.toString() || '1000');
+  const storyIds = (tags && tags.length > 0) ? (await listStory( { tags: { '$in': tags } }, { skip,limit,sort:'createdAt' } )): (await listStory({},{ skip,limit,sort:'createdAt' }));
+  if (!storyIds) {
+    return res.sendStatus(404);
+  }
+
+  return res.send(storyIds);
 }

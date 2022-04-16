@@ -67,7 +67,9 @@ export async function listFinetuneHandler(
   res: Response
 ) {
   const state = req.query.state?.toString();
-  const finetunes = await listFinetune({ state });
+  const skip = parseInt(req.query.skip?.toString() || '0');
+  const limit = parseInt(req.query.limit?.toString() || '1000');
+  const finetunes = (state && state.length > 0) ? (await listFinetune( { state }, { skip,limit,sort:'createdAt' } )): (await listFinetune({},{ skip,limit,sort:'createdAt' }));
   if (!finetunes) {
     return res.sendStatus(404);
   }
