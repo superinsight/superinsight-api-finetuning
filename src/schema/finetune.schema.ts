@@ -119,7 +119,9 @@ export const createFinetuneSchema = object({
 });
 
 export const updateFinetuneSchema = object({
-  ...payload,
+  body: object({
+    state: string({required_error:'state is required'}),
+  }),
   ...params,
 });
 

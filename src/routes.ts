@@ -1,5 +1,5 @@
 import { Express, Request, Response } from "express";
-import { createStoryHandler, getStoryHandler } from "./controller/story.controller";
+import { createStoryHandler, getStoryHandler, listStoryHandler } from "./controller/story.controller";
 import {
   createFinetuneHandler,
   getFinetuneHandler,
@@ -8,7 +8,7 @@ import {
   deleteFinetuneHandler,
 } from "./controller/finetune.controller";
 import validateResource from "./middleware/validateResource";
-import { createStorySchema, getStorySchema} from "./schema/story.schema";
+import { createStorySchema, getStorySchema, listStorySchema} from "./schema/story.schema";
 import {
   createFinetuneSchema,
   deleteFinetuneSchema,
@@ -78,12 +78,48 @@ function routes(app: Express) {
    *           schema:
    *              $ref: '#/components/schemas/ReadStoryResponse'
    *       404:
-   *         description: Finetune not found
+   *         description: Story not found
    */
     app.get(
     "/api/stories/:storyId",
     validateResource(getStorySchema),
     getStoryHandler
+  );
+
+  /**
+   * @openapi
+   * '/api/stories':
+   *  get:
+   *     tags:
+   *     - Story
+   *     summary: List stories by tags, useful for listing all story tags
+   *     parameters:
+   *      - name: tags 
+   *        in: query
+   *        description: List of stories comma delimiter 
+   *        required: false
+   *      - name: skip 
+   *        in: query
+   *        description: skiping the number of elements from all the possible results 
+   *        required: false
+   *      - name: limit 
+   *        in: query
+   *        description: limiting the number of return results
+   *        required: false
+   *     responses:
+   *       200:
+   *         description: Success
+   *         content:
+   *          application/json:
+   *           schema:
+   *              $ref: '#/components/schemas/ListStoryResponse'
+   *       404:
+   *         description: Stories not found
+   */
+   app.get(
+    "/api/stories/",
+    validateResource(listStorySchema),
+    listStoryHandler
   );
 
   /**
@@ -163,7 +199,7 @@ function routes(app: Express) {
    *     parameters:
    *      - name: finetuneId
    *        in: path
-   *        description: status of finetunes 
+   *        description: finetune ID
    *        required: true
    *     responses:
    *       200:
@@ -198,8 +234,15 @@ function routes(app: Express) {
    *     parameters:
    *      - name: state 
    *        in: query
-   *        description: The id of the finetune
-   *        required: true
+   *        description: The state of the finetunes to query on
+   *        required: false
+   *      - name: skip 
+   *        in: query
+   *        description: skiping the number of elements from all the possible results 
+   *        required: false
+   *      - name: limit 
+   *        in: query
+   *        description: limiting the number of return results
    *     responses:
    *       200:
    *         description: Success

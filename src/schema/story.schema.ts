@@ -55,6 +55,10 @@ import { any, nullable, object, string, TypeOf } from "zod";
  *          type: string
  *        updatedAt:
  *          type: string
+ *    ListStoryResponse:
+ *      type: array
+ *      items:
+ *        $ref: '#/components/schemas/ReadStoryResponse'
  */
 
 export const createStorySchema = object({
@@ -78,5 +82,8 @@ export const getStorySchema = object({
   ...params,
 });
 
+export const listStorySchema = object({});
+
 export type CreateStoryInput = TypeOf<typeof createStorySchema>;
 export type ReadStoryInput = TypeOf<typeof getStorySchema>;
+export type ListStoryInput = TypeOf<typeof listStorySchema>;

@@ -46,7 +46,7 @@ export async function findAndUpdateFinetune(
   update: UpdateQuery<FinetuneDocument>,
   options: QueryOptions
 ) {
-  return FinetuneModel.findOneAndUpdate(query, update, options);
+  return FinetuneModel.findOneAndUpdate(query, update, options).select(returnProperties);;
 }
 
 export async function deleteFinetune(query: FilterQuery<FinetuneDocument>) {
