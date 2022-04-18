@@ -1,4 +1,4 @@
-import { object, number, string, array, TypeOf } from "zod";
+import { object, number, string, array, TypeOf, nullable, optional } from "zod";
 
 /**
  * @openapi
@@ -23,6 +23,12 @@ import { object, number, string, array, TypeOf } from "zod";
  *          items:
  *            type: string
  *          default: ['medicine','health']
+ *        tokenizerName:
+ *          type: string
+ *          default: ''
+ *        learningRate:
+ *          type: string
+ *          default: ''
  *    CreateFinetuneResponse:
  *      type: object
  *      properties:
@@ -54,6 +60,10 @@ import { object, number, string, array, TypeOf } from "zod";
  *          type: array
  *          items:
  *            type: string
+ *        tokenizerName:
+ *          type: string
+ *        learningRate:
+ *          type: string
  *        createdAt:
  *          type: string
  *        updatedAt:
@@ -97,12 +107,13 @@ import { object, number, string, array, TypeOf } from "zod";
  *          type: string
  */
 
-
 const payload = {
   body: object({
     baseModelId: string({required_error:'baseModelId required'}),
     storyIds: array(string({required_error:'story ids required'})),
     storyTags: array(string()),
+    tokenizerName: optional(string()),
+    learningRate: optional(string()),
   }),
 };
 

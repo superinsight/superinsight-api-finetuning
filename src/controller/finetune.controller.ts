@@ -22,9 +22,11 @@ export async function createFinetuneHandler(
   const storyIds = body.storyIds;
   const storyTags = body.storyTags;
   const baseModelId = body.baseModelId;
+  const tokenizerName = (body.tokenizerName && body.tokenizerName?.length > 0) ? body.tokenizerName: undefined;
+  const learningRate = (body.learningRate && body.learningRate?.length > 0) ? body.learningRate: undefined;
   const state = 'created'
-  const finetune = await createFinetune({ baseModelId, storyIds, storyTags, state });
-  return res.send({ baseModelId: finetune.baseModelId, state: finetune.state, storyIds: finetune.storyIds, storyTags: finetune.storyTags, finetuneId: finetune.finetuneId, createdAt: finetune.createdAt, updatedAt: finetune.updatedAt });
+  const finetune = await createFinetune({ baseModelId, storyIds, storyTags, state, tokenizerName, learningRate });
+  return res.send({ baseModelId: finetune.baseModelId, state: finetune.state, storyIds: finetune.storyIds, storyTags: finetune.storyTags, finetuneId: finetune.finetuneId, tokenizerName: finetune.tokenizerName, learningRate: finetune.learningRate ,createdAt: finetune.createdAt, updatedAt: finetune.updatedAt });
 }
 
 export async function updateFinetuneHandler(
