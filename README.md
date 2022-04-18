@@ -7,6 +7,14 @@ Stories are text will be use for finetuning. You can create unlimited number of 
 ## Finetunes
 Finetunes are use to finetune and existing GPT models. This API will allow you to setup everything you need to prepare for finetuning the model. You can define your training dataset by using a collection of StoryIDs or StoryTags which will be use for dataset during finetuning. The actual training of the model happens in the superinsight-trainer-gpt repo.
 
+## Available Models for finetuning
+model | Summary
+--- | ---
+gpt-neo-125m | The `EleutherAI/gpt-neo-125M` model.
+gpt-neo-1.3b | The `EleutherAI/gpt-neo-1.3B` model.
+gpt-neo-2.7b  | The `EleutherAI/gpt-neo-2.7B` model.
+gpt-j-6b | The `EleutherAI/gpt-j-6B` model.
+
 ## API Demo
 To test out the API, you test it directly using the Swagger. All the API routes are available for testing, however since it is a demo, the actual training will not proceed unless a trainer is setup. See [superinsight-trainer-gpt](https://github.com/superinsight/superinsight-trainer-gpt) for more.
 * [Demo on our server](https://finetuning.api.superinsight.dev/docs/)
