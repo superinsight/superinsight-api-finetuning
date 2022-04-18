@@ -1,4 +1,4 @@
-import { any, nullable, object, string, TypeOf } from "zod";
+import { optional, nullable, object, string, TypeOf } from "zod";
 
 /**
  * @openapi
@@ -63,7 +63,7 @@ import { any, nullable, object, string, TypeOf } from "zod";
 
 export const createStorySchema = object({
   body: object({
-    name: any(),
+    name: optional(string()),
     text: string({
       required_error: "Text is required",
     }),

@@ -8,6 +8,8 @@ export interface FinetuneInput {
   state: string;
   storyIds: string[];
   storyTags: string[];
+  tokenizerName?: string;
+  learningRate?: string;
 }
 
 export interface FinetuneDocument extends FinetuneInput, mongoose.Document {
@@ -29,6 +31,8 @@ const finetuneSchema = new mongoose.Schema(
     state: { type: String, required: true },
     storyIds: { type: [String], required: true },
     storyTags: { type: [String], required: true },
+    tokenizerName: { type: String, required: false},
+    learningRate: { type: String, required: false },
   },
   {
     timestamps: true,
