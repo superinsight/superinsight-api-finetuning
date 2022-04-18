@@ -1,6 +1,6 @@
 {
   "name": "superinsight-api-finetuning",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "main": "index.js",
   "author": "Nelson Chu",
   "license": "Apache License 2.0",
